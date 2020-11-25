@@ -110,9 +110,9 @@ class LoggerBase(object):
         if 'dst_host' not in logdata:
             logdata['dst_host'] = ''
         print("getting host ip")
-        if 'HOSTIP' in os.environ:
-            print("Got host ip: " + str(os.getenv('HOSTIP')))
-            logdata['dst_host'] = str(os.getenv('HOSTIP'))
+        if self.host_ip != '':
+            print("Got host ip")
+            logdata['dst_host'] = self.host_ip
         if 'dst_port' not in logdata:
             logdata['dst_port'] = -1
         if 'logtype' not in logdata:
@@ -129,6 +129,7 @@ class PyLogger(LoggerBase):
 
     def __init__(self, config, handlers, formatters={}):
         self.node_id = config.getVal('device.node_id')
+        self.host_ip = config.getVal('host.ip')
 
         # Build config dict to initialise
         # Ensure all handlers don't drop logs based on severity level
