@@ -159,6 +159,7 @@ class PyLogger(LoggerBase):
         self.logger.warn(msg)
 
     def log(self, logdata, retry=True):
+        print("logging data")
         logdata = self.sanitizeLog(logdata)
         self.logger.warn(json.dumps(logdata, sort_keys=True))
 
