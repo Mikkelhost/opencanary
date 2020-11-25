@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+/dist/.opencanary.conf
 # Ignore environments
 py3env/
 openv/
