@@ -4,6 +4,7 @@ import logging.config
 import socket
 import hpfeeds
 import sys
+import os
 
 from datetime import datetime
 from logging.handlers import SocketHandler
@@ -108,6 +109,9 @@ class LoggerBase(object):
             logdata['src_port'] = -1
         if 'dst_host' not in logdata:
             logdata['dst_host'] = ''
+        print("getting host ip")
+        if 'HOSTIP' in os.environ:
+            logdata['dst_host'] = str(os.getenv('HOSTIP'))
         if 'dst_port' not in logdata:
             logdata['dst_port'] = -1
         if 'logtype' not in logdata:
