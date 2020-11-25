@@ -129,7 +129,12 @@ class PyLogger(LoggerBase):
 
     def __init__(self, config, handlers, formatters={}):
         self.node_id = config.getVal('device.node_id')
-        self.host_ip = config.getVal('host.ip')
+        try:
+            self.host_ip = config.getVal('host.ip')
+        except Exception as e:
+            print("Error: config does not have 'host.ip' parameter", file=sys.stderr)
+            exit(1)
+
 
         # Build config dict to initialise
         # Ensure all handlers don't drop logs based on severity level
