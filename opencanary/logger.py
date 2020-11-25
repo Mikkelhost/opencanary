@@ -111,6 +111,7 @@ class LoggerBase(object):
             logdata['dst_host'] = ''
         print("getting host ip")
         if 'HOSTIP' in os.environ:
+            print("Got host ip: " + str(os.getenv('HOSTIP')))
             logdata['dst_host'] = str(os.getenv('HOSTIP'))
         if 'dst_port' not in logdata:
             logdata['dst_port'] = -1
