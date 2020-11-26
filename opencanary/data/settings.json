@@ -2,6 +2,8 @@
     "device.node_id": "opencanary-1",
     "git.enabled": false,
     "git.port" : 9418,
+    "whitelist": ["ip1","ip2","..."],
+    "host.ip": "",
     "ftp.enabled": true,
     "ftp.port": 21,
     "ftp.banner": "FTP server ready",
