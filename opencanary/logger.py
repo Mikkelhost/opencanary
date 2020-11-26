@@ -177,9 +177,16 @@ class PyLogger(LoggerBase):
         self.logger.warn(msg)
 
     def log(self, logdata, retry=True):
-        print("Dst_host is: " + logdata['dst_host'])
-        logdata = self.sanitizeLog(logdata)
-        self.logger.warn(json.dumps(logdata, sort_keys=True))
+        if 'src_host' not in logdata:
+            logdata = self.sanitizeLog(logdata)
+            self.logger.warn(json.dumps(logdata, sort_keys=True))
+        else:
+            if logdata['src_host'] in self.whitelist:
+                print("Source ip whitelisted, continue without logging")
+            else:
+                logdata = self.sanitizeLog(logdata)
+                self.logger.warn(json.dumps(logdata, sort_keys=True))
+
 
 
 class SocketJSONHandler(SocketHandler):
