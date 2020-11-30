@@ -140,7 +140,8 @@ class PyLogger(LoggerBase):
             for ip in self.whitelist:
                 print(ip+"\n")
         except Exception as e:
-            print("Warning: No IPs has been whitelisted.\nAdd \"whitelist\": [\"ip1\",\"ip2\",\"...\"] to the config file to whitelist one or more ips from triggering warnings")
+            print("Error: Config does not have 'whitelist' parameter", file=sys.strerr)
+            exit(1)
 
 
         # Build config dict to initialise
